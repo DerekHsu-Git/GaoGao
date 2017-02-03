@@ -1,0 +1,96 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Widget.Look.Toolbar.SmallCapsTitle">
+        <item name="android:titleTextAppearance">@style/TextAppearance.ToolbarTitleSmallCaps</item>
+    </style>
+
+    <style name="Widget.Look.HomeToolbar" parent="Widget.Look.Toolbar.SmallCapsTitle">
+        <item name="android:background">@null</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:theme">@android:style/ThemeOverlay.Material.Dark</item>
+    </style>
+
+
+    <style name="TextAppearance.ToolbarTitleSmallCaps" parent="@android:style/TextAppearance.Material.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/text_primary_light</item>
+        <item name="android:fontFeatureSettings">smcp</item>
+        <item name="android:letterSpacing">0.2</item>
+    </style>
+    <style name="Widget.Look.Toolbar">
+        <item name="android:titleTextAppearance">@android:style/TextAppearance.Material.Widget.ActionBar.Title</item>
+        <item name="android:background">?android:colorPrimary</item>
+        <item name="android:elevation">@dimen/z_app_bar</item>
+        <item name="android:theme">@style/PlaidDarkOverlay</item>
+    </style>
+
+
+    <style name="PlaidDarkOverlay" parent="@android:style/ThemeOverlay.Material.Dark.ActionBar">
+        <!-- Used to theme dark elements in light themed screens.
+             Extend the material dark Action Bar overlay as this contains text styling. -->
+    </style>
+
+
+    <style name="Widget.Look" parent="android:Widget" />
+
+    <style name="Look.Home">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/immersive_bars</item>
+        <item name="android:navigationBarColor">@color/immersive_bars</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/background_light</item>
+        <item name="android:windowEnterTransition">@transition/home_enter</item>
+
+    </style>
+    <style name="Look" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorBackground">@color/background_light</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:navigationBarColor">@color/primary_super_dark</item>
+        <item name="android:statusBarColor">@color/background_super_dark</item>
+        <item name="android:textColorHint">@color/hint_disabled_dark</item>
+        <item name="android:windowBackground">@color/background_light</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowSharedElementsUseOverlay">false</item>
+    </style>
+
+    <style name="Look.Translucent.Look.Image">
+        <item name="android:windowSharedElementEnterTransition">@transition/dribbble_shot_shared_enter</item>
+        <item name="android:windowSharedElementReturnTransition">@transition/dribbble_shot_shared_return</item>
+        <item name="android:windowEnterTransition">@transition/dribbble_shot_enter</item>
+        <item name="android:windowReturnTransition">@transition/dribbble_shot_return</item>
+    </style>
+
+    <style name="Look.Translucent.Look">
+        <item name="android:colorPrimary">@color/dribbble</item>
+        <item name="android:colorAccent">@color/dribbble</item>
+        <item name="android:statusBarColor">@color/dribbble_super_dark</item>
+        <item name="android:navigationBarColor">@color/dribbble_super_dark</item>
+        <item name="android:colorControlActivated">?android:colorAccent</item>
+        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+    </style>
+    <style name="Look.Translucent">
+        <item name="android:windowBackground">@color/scrim</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+</resources>
