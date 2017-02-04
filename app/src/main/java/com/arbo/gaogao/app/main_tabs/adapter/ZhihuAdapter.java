@@ -33,6 +33,7 @@ import static android.support.v7.widget.RecyclerView.NO_POSITION;
 public class ZhihuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements IBaseAdapter{
     private static final int MORE_ITEM = -1;
     private static final int NORMAL_ITEM = 1;
+
     private ArrayList<ZhihuDailyItem> zhihuDailyItems = new ArrayList<>();
     boolean showLoadingMore;
     float width;
@@ -76,12 +77,18 @@ public class ZhihuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private void normalBindViewHolder(final ZhihuViewHolder holder, final int position){
         final ZhihuDailyItem zhihuDailyItem = zhihuDailyItems.get(holder.getAdapterPosition());
-
+        if(Config.isNight){
+            holder.linearLayout.setBackgroundColor(Config.DARK_BACKGROUND_COLOR);
+            holder.textView.setTextColor(Config.DARK_TEXT_COLOR);
+            holder.imageView.setImageAlpha(Config.DARK_IMAGE_ALPHA);
+        }else{
+            holder.linearLayout.setBackgroundColor(Config.LIGHT_BACKGROUND_COLOR);
+            holder.textView.setTextColor(Config.LIGHT_TEXT_COLOR);
+            holder.imageView.setImageAlpha(Config.LIGHT_IMAGE_ALPHA);
+        }
         //如果此条数据已经阅读过了，那么在加载这数据的时候，将标题设置为灰色，否则黑色(default)
         if(DBUtils.getDB(mContext).isRead(Config.ZHIHU,zhihuDailyItem.getId(),1)){
             holder.textView.setTextColor(Color.GRAY);
-        }else{
-            holder.textView.setTextColor(Color.BLACK);
         }
         holder.textView.setText(zhihuDailyItem.getTitle());
         Glide.with(mContext)
@@ -102,6 +109,8 @@ public class ZhihuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 goDescribeActivity(holder,zhihuDailyItem);
             }
         });
+
+
 
     }
 

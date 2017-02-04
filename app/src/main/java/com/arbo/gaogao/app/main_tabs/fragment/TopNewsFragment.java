@@ -27,7 +27,6 @@ import com.arbo.gaogao.model.toutiao.NewsList;
 import com.arbo.gaogao.view.GridItemDividerDecoration;
 import com.arbo.gaogao.widget.WrapContentLinearLayoutManager;
 import com.arbo.lib.base.ui.BaseFragment;
-import com.arbo.lib.util.LogUtil;
 
 /**
  * Created by Administrator on 2017/2/1.
@@ -165,6 +164,10 @@ public class TopNewsFragment extends BaseFragment implements TopNewsContract.Vie
 
         }
 
+    }
+
+    public void notifyFragment(){
+        topNewsAdapter.notifyDataSetChanged();
     }
 
     @Override

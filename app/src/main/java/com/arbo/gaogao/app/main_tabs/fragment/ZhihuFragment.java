@@ -85,9 +85,11 @@ public class ZhihuFragment extends BaseFragment implements ZhihuContract.View {
             loadData();
         }
 
-
     }
 
+    public void notifyFragment(){
+        zhihuAdapter.notifyDataSetChanged();
+    }
 
     private void initScrollListener() {
         loadingMoreListener = new RecyclerView.OnScrollListener() {

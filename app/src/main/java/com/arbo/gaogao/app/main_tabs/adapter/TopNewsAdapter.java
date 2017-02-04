@@ -79,15 +79,25 @@ public class TopNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private void normalBindViewHolder(final NormalViewHolder holder, int position) {
         final NewsBean newsItem = newsItemList.get(holder.getAdapterPosition());
+        if(Config.isNight){
+            holder.linearLayout.setBackgroundColor(Config.DARK_BACKGROUND_COLOR);
+            holder.title.setTextColor(Config.DARK_TEXT_COLOR);
+            holder.time.setTextColor(Config.DARK_TEXT_COLOR);
+            holder.source.setTextColor(Config.DARK_TEXT_COLOR);
+            holder.imageView.setImageAlpha(Config.DARK_IMAGE_ALPHA);
+        }else{
+            holder.linearLayout.setBackgroundColor(Config.LIGHT_BACKGROUND_COLOR);
+            holder.title.setTextColor(Config.LIGHT_TEXT_COLOR);
+            holder.time.setTextColor(Config.LIGHT_TEXT_COLOR);
+            holder.source.setTextColor(Config.LIGHT_TEXT_COLOR);
+            holder.imageView.setImageAlpha(Config.LIGHT_IMAGE_ALPHA);
+        }
+
         //如果此条数据已经阅读过了，那么在加载这数据的时候，将标题设置为灰色，否则黑色(default)
         if(DBUtils.getDB(mContext).isRead(Config.TOPNEWS,newsItem.getDocid(),1)){
             holder.title.setTextColor(Color.GRAY);
             holder.time.setTextColor(Color.GRAY);
             holder.source.setTextColor(Color.GRAY);
-        }else{
-            holder.title.setTextColor(Color.BLACK);
-            holder.time.setTextColor(Color.BLACK);
-            holder.source.setTextColor(Color.BLACK);
         }
         holder.title.setText(newsItem.getTitle());
         holder.time.setText(newsItem.getTime());

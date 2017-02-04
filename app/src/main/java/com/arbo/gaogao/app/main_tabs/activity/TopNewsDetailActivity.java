@@ -20,6 +20,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
+import com.arbo.gaogao.Config;
 import com.arbo.gaogao.R;
 import com.arbo.gaogao.app.main_tabs.presenter.TopNewsDetailContract;
 import com.arbo.gaogao.app.main_tabs.presenter.TopNewsDetailPresenterImpl;
@@ -271,6 +272,13 @@ public class TopNewsDetailActivity extends BaseActivity implements TopNewsDetail
     @Override
     public void showWebView(NewsDetail newsDetail) {
         if(newsDetail!=null){
+            if(Config.isNight){
+                htNewsContent.setTextColor(Config.DARK_TEXT_COLOR);
+                htNewsContent.setBackgroundColor(Config.DARK_BACKGROUND_COLOR);
+            }else{
+                htNewsContent.setTextColor(Config.LIGHT_TEXT_COLOR);
+                htNewsContent.setBackgroundColor(Config.LIGHT_BACKGROUND_COLOR);
+            }
             htNewsContent.setHtmlFromString(newsDetail.getBody(), new HtmlTextView.LocalImageGetter());
         }
     }

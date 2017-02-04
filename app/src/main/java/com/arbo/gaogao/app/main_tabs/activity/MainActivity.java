@@ -1,14 +1,17 @@
 package com.arbo.gaogao.app.main_tabs.activity;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.SimpleArrayMap;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.ActionMenuView;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,10 +19,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.animation.AnimationUtils;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.arbo.gaogao.Config;
 import com.arbo.gaogao.R;
 import com.arbo.gaogao.app.main_tabs.fragment.TopNewsFragment;
 import com.arbo.gaogao.app.main_tabs.fragment.ZhihuFragment;
@@ -99,6 +104,35 @@ public class MainActivity extends AppBaseActivity
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
             drawer.setOnApplyWindowInsetsListener(this);
         }
+
+        //主题变色
+        MenuItem item = navView.getMenu().findItem(R.id.nav_theme);
+        final SwitchCompat mThemeSwitch = (SwitchCompat) MenuItemCompat.getActionView(item).findViewById(R.id.view_switch);
+        mThemeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mThemeSwitch.setChecked(isChecked);
+                if (isChecked) {
+                    Config.isNight = true;
+                    setThemeColor(Color.DKGRAY);
+                } else {
+                    Config.isNight = false;
+                    setThemeColor(Config.APP_BAR_LIGHT_COLOR);
+                }
+                if(currentMenuItem.getItemId()==R.id.zhihuitem){
+                    ZhihuFragment fragment = (ZhihuFragment) currentFragment;
+                    fragment.notifyFragment();
+                }else {
+                    TopNewsFragment fragment = (TopNewsFragment) currentFragment;
+                    fragment.notifyFragment();
+                }
+            }
+        });
+    }
+
+    private void setThemeColor(int color){
+        getWindow().setStatusBarColor(color);
+        toolbar.setBackgroundColor(color);
     }
 
     private void switchFragment(Fragment fragment, String title) {
@@ -267,7 +301,7 @@ public class MainActivity extends AppBaseActivity
                     statusBarBackground.getLayoutParams();
             lpStatus.height = insets.getSystemWindowInsetTop();
             statusBarBackground.setLayoutParams(lpStatus);
-            statusBarBackground.setBackgroundColor(0xbcf40b0b);//此项设置状态栏的颜色
+            statusBarBackground.setBackgroundColor(Config.APP_BAR_LIGHT_COLOR);//此项设置状态栏的颜色
 
             // inset the filters list for the status bar / navbar
             // need to set the padding end for landscape case
