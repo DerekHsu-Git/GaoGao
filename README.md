@@ -5,4 +5,5 @@
  - Image: Glide
  - Others: RecycleView、CardView、Material Design
  
-![](http://i.imgur.com/She4eF1.gif)
+ Have a look：
+![](http://i.imgur.com/She4eF1.gif)　　![](http://i.imgur.com/y1e26KV.gif)　
